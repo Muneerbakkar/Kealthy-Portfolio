@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { FaArrowLeft, FaArrowRight, FaChevronDown, FaSearch, FaHeart } from "react-icons/fa"
+import PropTypes from "prop-types"
 
 const BlogListView = ({ blogs, onBack, onLike }) => {
   const [searchTerm, setSearchTerm] = useState("")
@@ -393,5 +394,22 @@ const BlogListView = ({ blogs, onBack, onLike }) => {
     </div>
   )
 }
+BlogListView.propTypes = {
+  blogs: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      title: PropTypes.string,
+      content: PropTypes.string,
+      tags: PropTypes.arrayOf(PropTypes.string),
+      imageUrls: PropTypes.arrayOf(PropTypes.string),
+      createdAt: PropTypes.any,
+      liked: PropTypes.bool,
+      likes: PropTypes.number,
+    })
+  ),
+  onBack: PropTypes.func.isRequired,
+  onLike: PropTypes.func.isRequired,
+}
 
 export default BlogListView
+

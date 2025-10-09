@@ -10,8 +10,7 @@ const Blog = () => {
   const [blogs, setBlogs] = useState([])
   const [showListView, setShowListView] = useState(false)
   const [displayedBlogs, setDisplayedBlogs] = useState([])
-  const [blogsToShow, setBlogsToShow] = useState(3) // Initially show 6 blogs
-  const blogsPerLoad = 3 // Load 3 more blogs each time
+  const [blogsToShow] = useState(3) // Initially show 6 blogs
 
   // Scroll to the top on mount
   useEffect(() => {
@@ -43,10 +42,6 @@ const Blog = () => {
   useEffect(() => {
     setDisplayedBlogs(blogs.slice(0, blogsToShow))
   }, [blogs, blogsToShow])
-
-  const handleSeeMore = () => {
-    setBlogsToShow((prev) => prev + blogsPerLoad)
-  }
 
   const handleViewAllBlogs = () => {
     setShowListView(true)
@@ -141,15 +136,6 @@ const Blog = () => {
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-            {/* {blogsToShow < blogs.length && (
-              <button
-                onClick={handleSeeMore}
-                className="px-6 py-3 bg-[#027d4f] text-white rounded-lg hover:bg-[#025a3a] transition-colors font-medium"
-              >
-                See More ({blogs.length - blogsToShow} remaining)
-              </button>
-            )} */}
-
             <button
               onClick={handleViewAllBlogs}
               className="px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors font-medium"
